@@ -37,3 +37,18 @@ class User(Base):
         DateTime(timezone=True),
         server_default=func.now()
     )
+
+
+class User(Base):
+    __tablename__ = "tasks"
+    
+    id = Column(
+        Integer,
+        primary_key=True,
+        index=True
+    )
+
+    task_name = column(
+        String(100),
+        nullable = False
+    )
