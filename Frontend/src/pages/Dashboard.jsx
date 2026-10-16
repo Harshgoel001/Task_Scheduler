@@ -1,5 +1,8 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo } from "react";
 import "../App.css";
+import { checkBackend } from "../api";
+import { useState } from "react";
+
 
 const STORAGE_KEY = "daily-goals-tasks";
 
@@ -24,6 +27,7 @@ function formatDate(dateString) {
   });
 }
 
+
 function formatDuration(minutes) {
   if (minutes < 60) {
     return `${minutes} min`;
@@ -40,6 +44,18 @@ function formatDuration(minutes) {
 }
 
 export default function Dashboard() {
+
+  const [backendStatus, setBackendStatus] = useState("Not checked");
+
+async function testBackend() {
+  try {
+    const data = await checkBackend();
+    setBackendStatus(data.status);
+  } catch (error) {
+    console.error("Backend connection failed:", error);
+    setBackendStatus("Connection failed");
+  }
+}
   const today = getDate(0);
   const tomorrow = getDate(1);
 
@@ -359,6 +375,8 @@ export default function Dashboard() {
 
 </div>
 
+
+
             <div className="form-group">
 
               <label>Start Time</label>
@@ -674,5 +692,6 @@ export default function Dashboard() {
 
       </div>
     </div>
+
   );
 }

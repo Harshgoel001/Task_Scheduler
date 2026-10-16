@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 
 const STORAGE_KEY = "daily-goals-events";
 
+
+
 function getToday() {
   const date = new Date();
 

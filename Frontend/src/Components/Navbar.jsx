@@ -1,5 +1,7 @@
 import { NavLink } from "react-router-dom";
 
+
+
 export default function Navbar() {
   return (
     <nav className="navbar">
@@ -41,6 +43,8 @@ export default function Navbar() {
         </div>
 
       </div>
+
+      
     </nav>
   );
 }
